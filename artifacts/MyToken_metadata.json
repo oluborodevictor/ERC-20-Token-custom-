@@ -11,6 +11,25 @@
 				"type": "constructor"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "_balances",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "allowance",
 				"outputs": [],
@@ -25,10 +44,22 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
 				"name": "balanceOf",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -72,7 +103,38 @@
 			},
 			{
 				"inputs": [],
-				"name": "getTokename",
+				"name": "getTokenName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "mint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
 				"outputs": [
 					{
 						"internalType": "string",
@@ -85,12 +147,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "name",
+				"name": "owner",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "address",
 						"name": "",
-						"type": "string"
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -112,8 +174,14 @@
 			{
 				"inputs": [],
 				"name": "totalSupply",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -159,11 +227,11 @@
 	},
 	"sources": {
 		"vivica.sol": {
-			"keccak256": "0x93923e1a5a6563877fcbe791b3738ae7f6765cc0e0e0f94e5e0f2fd645e099c6",
+			"keccak256": "0xfa88c9bf5bdb3eca646854b2fed6359be02bd31601bf265ec58b701edb9eb39a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://096f059a1c415458215f93e78f41c2575ad7f0ea5ed3d7908e46cca086fe2b92",
-				"dweb:/ipfs/QmPgFJbupPn8yF4ed7PcqwnCHubNN7szbbgFBuKU1iMC5T"
+				"bzz-raw://182c4c3d5fcbbf50167b36dbc9389169c74e864322768de2733619125a25fa41",
+				"dweb:/ipfs/QmZowKy1c1sBKPBGeoL9NCkAV4Detwkkw4eqkq2DVdogVM"
 			]
 		}
 	},
