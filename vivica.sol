@@ -18,6 +18,7 @@ contract MyToken {
     }
 
     mapping(address account => uint256) private _balances;
+    mapping(address => mapping(address => uint256)) private _allowances;
 
     function _mint (address account, uint256 amount) internal {
         _balances[account]+= amount;
@@ -52,6 +53,8 @@ contract MyToken {
     }
 
     event Transfer(address indexed from, address indexed to, uint256 amount);
+    event Approval(address indexed owner, address indexed spender, uint256 amount);
+
     function transfer (address account, uint amount) public returns (bool success) {
         uint rawAmount = amount * 10 ** uint(decimals);
         require(balanceOf(msg.sender) >= rawAmount, "Not enough balance!");
@@ -61,15 +64,25 @@ contract MyToken {
         return true;   
     }
 
-    function transferFrom () public {
-
+    function transferFrom (address sender, address recipient, uint amount) public returns (bool success){
+        uint rawAmount = amount * 10 ** uint(decimals);
+        require(_balances[sender] >= rawAmount, "Not enough balance!");
+        require(_allowances[msg.sender][sender] >= rawAmount, "Not enough allowance!");
+        _balances[sender] -= rawAmount;
+        _balances[recipient] += rawAmount;
+        _allowances[sender][msg.sender] -= rawAmount;
+        emit Transfer(sender, recipient, rawAmount);
+        return true;
     }
 
-    function approve () public {
-
+    function approve (address spender, uint amount) public returns (bool success) {
+        uint rawAmount = amount * 10 ** uint(decimals);
+        _allowances[msg.sender][spender] = rawAmount;
+        emit Approval(msg.sender, spender, rawAmount);
+        return true;
     }
 
-    function allowance () public {
-
+    function allowance (address from, address spender) public view returns (uint256 remaining){
+        return _allowances[from][spender];
     }
 }
