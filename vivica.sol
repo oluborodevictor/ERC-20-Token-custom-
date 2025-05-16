@@ -17,11 +17,12 @@ contract MyToken {
         _mint(msg.sender, 1000 * 10 ** uint(decimals));
     }
 
-    mapping(address account => uint256) public _balances;
+    mapping(address account => uint256) private _balances;
 
     function _mint (address account, uint256 amount) internal {
         _balances[account]+= amount;
         _totalSupply += amount;
+        emit Transfer(address(0), account, amount);
     }
 
     function mint (address account, uint256 amount) public {
@@ -50,8 +51,14 @@ contract MyToken {
         return _balances[account];
     }
 
-    function transfer () public {
-
+    event Transfer(address indexed from, address indexed to, uint256 amount);
+    function transfer (address account, uint amount) public returns (bool success) {
+        uint rawAmount = amount * 10 ** uint(decimals);
+        require(balanceOf(msg.sender) >= rawAmount, "Not enough balance!");
+        _balances[msg.sender] -= rawAmount;
+        _balances[account] += rawAmount;
+        emit Transfer(msg.sender, account, rawAmount);
+        return true;   
     }
 
     function transferFrom () public {
